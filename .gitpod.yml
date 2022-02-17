@@ -7,6 +7,7 @@ tasks:
   # pip install --user to install to /workspace.
   - name: kedro
     before: |
+      eval "$(pyenv init --path)"
       echo PIP_USER=no >> ~/.bashrc && export PIP_USER=no
     init: |
       make sign-off
@@ -18,6 +19,7 @@ tasks:
   # Generate a test Kedro project at /workspace/project using the local Kedro version.
   - name: test-project
     init: |
+      eval "$(pyenv init --path)"
       gp sync-await kedro
       export PIP_USER=no
       cd /workspace
